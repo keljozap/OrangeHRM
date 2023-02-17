@@ -1,0 +1,54 @@
+defaultTasks 'clean', 'test', 'aggregate'
+
+group 'org.orangehrm.serenity'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+ext {
+    serenityCoreVersion = '3.3.10'
+    serenityCucumberVersion = '3.3.10'
+    junitVersion = '4.13.2'
+    assertJVersion = '3.24.2'
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}",
+            "junit:junit:${junitVersion}",
+            "org.junit.platform:junit-platform-launcher:1.8.2",
+            "org.junit.jupiter:junit-jupiter-engine:5.8.2",
+            "org.junit.vintage:junit-vintage-engine:5.8.2",
+            "org.assertj:assertj-core:${assertJVersion}"
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+    useJUnitPlatform()
+}
+
+
+gradle.startParameter.continueOnFailure = false
+
+test.finalizedBy(aggregate)
