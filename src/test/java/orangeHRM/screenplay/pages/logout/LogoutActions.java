@@ -7,7 +7,7 @@ import orangeHRM.screenplay.pages.aunthentication.User;
 public class LogoutActions extends UIInteractionSteps {
     @Step("Logout of the system")
     public void ofTheSystem() {
-        $("//*[contains(@class, 'active ')]").click();
+        $("//*[contains(@class, 'oxd-userdropdown-tab')]").click();
         $("//*[contains(text(), 'Logout')]").click();
     }
 }
