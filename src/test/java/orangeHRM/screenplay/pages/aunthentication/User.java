@@ -1,4 +1,4 @@
-package orangeHRM.screenplay.pages.aunthentication.actions;
+package orangeHRM.screenplay.pages.aunthentication;
 
 public enum User {
     ADMIN("Admin","admin123");

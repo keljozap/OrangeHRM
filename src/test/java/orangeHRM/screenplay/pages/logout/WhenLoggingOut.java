@@ -1,9 +1,11 @@
-package orangeHRM.screenplay.pages.aunthentication;
+package orangeHRM.screenplay.pages.logout;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import orangeHRM.screenplay.pages.aunthentication.LoginActions;
+import orangeHRM.screenplay.pages.aunthentication.LoginPage;
 import orangeHRM.screenplay.pages.dashboard.DashboardPage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,26 +16,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SerenityRunner.class)
-public class WhenLoggingOn{
+public class WhenLoggingOut {
 
     @Managed(driver = "chrome")
     WebDriver driver;
 
     @Steps
     LoginActions login;
-
+    LogoutActions logout;
     DashboardPage dashboardPage;
+    LoginPage loginPage;
 
     @Test
-    public void userCanLogin(){
+    public void userCanLogout(){
 
         // Login
         login.as(ADMIN);
 
-        // Login sucessfull
-        Serenity.reportThat("The dashboard page should be displayed with the correct title",
-                () -> assertThat((dashboardPage.getHeading()).contains("Dashboard")));
+        // Verify the successful login
         Serenity.reportThat("The dashboard page should be displayed with the correct title",
                 () -> assertTrue((dashboardPage.getHeading()).equals("Dashboard")));
+
+        // Proceed with the logout
+        logout.ofTheSystem();
+
+        // Verify the login page
+        Serenity.reportThat("The login page should be displayed with the correct title",
+                () -> assertTrue((loginPage.getLoginHeading().equals("Login"))));
     }
+
 }
