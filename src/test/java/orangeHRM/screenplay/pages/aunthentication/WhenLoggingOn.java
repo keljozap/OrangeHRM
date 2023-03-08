@@ -15,7 +15,6 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SerenityRunner.class)
 public class WhenLoggingOn{
-
     @Managed(driver = "chrome")
     WebDriver driver;
 

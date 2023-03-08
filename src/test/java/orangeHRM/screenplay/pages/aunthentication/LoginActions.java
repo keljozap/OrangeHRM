@@ -7,8 +7,10 @@ public class LoginActions extends UIInteractionSteps {
     @Step("Log in as {0} user")
     public void as(User user) {
         openUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        $("[name=username]").sendKeys(user.getUsername());
-        $("[name=password]").sendKeys(user.getPassword());
-        $("//button[contains(.,'Login')]").click();
+
+        // Attempt to login
+        $(LoginForm.USER_NAME).sendKeys(user.getUsername());
+        $(LoginForm.PASSWORD).sendKeys(user.getPassword());
+        $(LoginForm.LOGIN_BUTTON).click();
     }
 }
