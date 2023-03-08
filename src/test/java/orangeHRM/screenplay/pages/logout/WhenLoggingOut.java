@@ -5,6 +5,7 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import orangeHRM.screenplay.pages.aunthentication.LoginActions;
+import orangeHRM.screenplay.pages.aunthentication.LoginForm;
 import orangeHRM.screenplay.pages.aunthentication.LoginPage;
 import orangeHRM.screenplay.pages.dashboard.DashboardPage;
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class WhenLoggingOut {
 
     @Steps
     LoginActions login;
+    @Steps
     LogoutActions logout;
     DashboardPage dashboardPage;
     LoginPage loginPage;
@@ -42,7 +44,7 @@ public class WhenLoggingOut {
 
         // Verify the login page
         Serenity.reportThat("The login page should be displayed with the correct title",
-                () -> assertTrue((loginPage.getLoginHeading().equals("Login"))));
+                () -> assertTrue((loginPage.textOf(LoginForm.LOGIN_HEADING).equals("Login"))));
     }
 
 }
