@@ -4,6 +4,7 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import orangeHRM.screenplay.pages.EmployeesModule.EmployeeActions;
 import orangeHRM.screenplay.pages.EmployeesModule.EmployeeForm;
 import orangeHRM.screenplay.pages.EmployeesModule.EmployeePage;
 import orangeHRM.screenplay.pages.aunthentication.LoginActions;
@@ -25,6 +26,8 @@ public class WhenGoToPIM {
     LoginActions login;
     @Steps
     DashboardActions dashboardActions;
+    @Steps
+    EmployeeActions employeeActions;
 
     DashboardPage dPAge;
     EmployeePage ePage;
@@ -37,12 +40,27 @@ public class WhenGoToPIM {
     }
 
     @Test
-    public void goToPIMModule(){
+    public void seeEmployeesModule(){
 
         // Go to PIM Module
         dashboardActions.goToPIMModule();
 
         Serenity.reportThat("The Employee module tab is visible",
-                () -> assertThat(ePage.$(EmployeeForm.employeeModuleTitle).isCurrentlyVisible()));
+                () -> assertThat(ePage.$(EmployeeForm.employeeModuleTitleXpath).isCurrentlyVisible()));
+    }
+
+    @Test
+    public void seeAllEmployees(){
+
+        // Go to PIM Module
+        dashboardActions.goToPIMModule();
+
+        Serenity.reportThat("The Employee module tab is visible",
+                () -> assertThat(ePage.$(EmployeeForm.employeeModuleTitleXpath).isCurrentlyVisible()));
+
+        employeeActions.seeAllEmployeesListed();
+
+        Serenity.reportThat("All the employees are listed on employees table",
+                () -> assertThat(ePage.$(EmployeeForm.employeeTableListXpath).isCurrentlyVisible()));
     }
 }
