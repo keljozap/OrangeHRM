@@ -8,6 +8,7 @@ import orangeHRM.screenplay.pages.aunthentication.LoginActions;
 import orangeHRM.screenplay.pages.aunthentication.LoginForm;
 import orangeHRM.screenplay.pages.aunthentication.LoginPage;
 import orangeHRM.screenplay.pages.dashboard.DashboardPage;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -29,15 +30,17 @@ public class WhenLoggingOut {
     DashboardPage dashboardPage;
     LoginPage loginPage;
 
-    @Test
-    public void userCanLogout(){
-
-        // Login
+    @Before
+    public void login(){
         login.as(ADMIN);
 
         // Verify the successful login
         Serenity.reportThat("The dashboard page should be displayed with the correct title",
                 () -> assertTrue((dashboardPage.getHeading()).equals("Dashboard")));
+    }
+
+    @Test
+    public void userCanLogout(){
 
         // Proceed with the logout
         logout.ofTheSystem();
