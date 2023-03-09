@@ -47,7 +47,7 @@ public class WhenLoggingOut {
 
         // Verify the login page
         Serenity.reportThat("The login page should be displayed with the correct title",
-                () -> assertTrue((loginPage.textOf(LoginForm.LOGIN_HEADING).equals("Login"))));
+                () -> assertTrue((loginPage.textOf(LoginForm.loginHeadingXpath).equals("Login"))));
     }
 
 }

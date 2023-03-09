@@ -7,6 +7,6 @@ public class DashboardActions extends UIInteractionSteps {
 
     @Step("Click on PIM Module")
     public void goToPIMModule(){
-        $(DashboardForm.pimModule).click();
+        $(DashboardForm.pimModuleXpath).click();
     }
 }
