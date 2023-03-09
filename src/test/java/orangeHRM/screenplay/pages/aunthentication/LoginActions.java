@@ -9,8 +9,8 @@ public class LoginActions extends UIInteractionSteps {
         openUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
         // Attempt to login
-        $(LoginForm.username).sendKeys(user.getUsername());
-        $(LoginForm.password).sendKeys(user.getPassword());
-        $(LoginForm.loginButtonXpath).click();
+        $(LoginPage.username).sendKeys(user.getUsername());
+        $(LoginPage.password).sendKeys(user.getPassword());
+        $(LoginPage.loginButtonXpath).click();
     }
 }
