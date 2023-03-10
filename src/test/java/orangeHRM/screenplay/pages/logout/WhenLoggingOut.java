@@ -30,7 +30,7 @@ public class WhenLoggingOut {
     LoginPage loginPage;
 
     @Before
-    public void login(){
+    public void login() throws InterruptedException {
         login.as(ADMIN);
 
         // Verify the successful login

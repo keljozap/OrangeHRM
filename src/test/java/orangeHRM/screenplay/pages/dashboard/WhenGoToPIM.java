@@ -36,7 +36,7 @@ public class WhenGoToPIM {
     EmployeePersonalDetailsPage employeePersonalDetailsPage;
 
     @Before
-    public void goToEmployeesModule(){
+    public void goToEmployeesModule() throws InterruptedException {
         login.as(ADMIN);
         // Go to PIM Module
         dashboardActions.goToPIMModule();
