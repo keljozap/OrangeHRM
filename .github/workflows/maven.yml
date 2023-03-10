@@ -32,8 +32,8 @@ jobs:
 
     - name: Publish Test Results
       uses: dorny/test-reporter@v1.6.0
-      if: always()   
       with:
-        path: "**/TEST-*.xml"
+        name: Run Tests
+        path: "**/test-*.xml"
         reporter: java-junit
 
