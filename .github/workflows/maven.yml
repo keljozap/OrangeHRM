@@ -34,7 +34,7 @@ jobs:
     - name: Publish Test Results
       uses: dorny/test-reporter@v1.6.0
       with:
-        name: Run Tests
+        name: Publish Test Result
         path: "**/target/site/serenity/SERENITY-JUNIT-*.xml"
         reporter: java-junit
 
