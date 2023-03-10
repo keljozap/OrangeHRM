@@ -31,7 +31,7 @@ jobs:
     - name: Build with Maven
       run: mvn clean verify
 
-    - name: Publish Test Results
+    - name: Publish Report
       uses: dorny/test-reporter@v1.6.0
       with:
         name: Publish Test Result
