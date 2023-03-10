@@ -37,4 +37,4 @@ jobs:
         name: Run Tests
         path: "**/surefire-reports/pom*.xml"
         path-replace-backslashes: java-junit
-        reporter: all
+        reporter: java-junit
