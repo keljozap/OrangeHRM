@@ -2,13 +2,15 @@ package orangeHRM.screenplay.pages.EmployeesModule;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class EmployeeActions extends UIInteractionSteps {
 
     @Step("You can see all employees listed")
     public void seeAllEmployeesListed(){
-        $(EmployeePage.SearchButtonXpath).click();
+        waitForCondition().until(ExpectedConditions.visibilityOfElementLocated(EmployeePage.employeeModuleTitleXpath));
+        $(EmployeePage.employeeModuleTitleXpath).click();
         waitForCondition().until(ExpectedConditions.visibilityOfElementLocated(EmployeePage.employeeTableListXpath));
     }
 
