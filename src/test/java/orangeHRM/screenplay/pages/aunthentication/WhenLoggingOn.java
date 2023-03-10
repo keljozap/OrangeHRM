@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 import static orangeHRM.screenplay.pages.aunthentication.User.ADMIN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -24,7 +26,7 @@ public class WhenLoggingOn{
     DashboardPage dashboardPage;
 
     @Test
-    public void userCanLogin(){
+    public void userCanLogin() throws InterruptedException {
 
         // Login
         login.as(ADMIN);
