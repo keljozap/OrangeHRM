@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-       os: [ubuntu-latest, windows-latest, macOs-latest]
+       os: [ubuntu-latest, macOs-latest, windows-latestwindows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -33,21 +33,27 @@ jobs:
         settings-path: ${{ github.workspace }}
         
     - name: Build with Maven
+      if: always()
       run: mvn clean verify
       
     - name: Build with Maven using firefox
+      if: always()
       run: mvn clean verify -Ddriver=firefox
       
     - name: Grant execute permissions for gradle
+      if: always()
       run: chmod +x gradlew
       
     - name: Build with Gradle
+      if: always()
       run: ./gradlew clean test
       
     - name: Build with Gradle using firefox
+      if: always()
       run: ./gradlew clean test -Dwebdriver.driver=firefox
 
     - name: Publish Report
+      if: always()
       uses: dorny/test-reporter@v1.6.0
       with:
         name: Publish Test Result
