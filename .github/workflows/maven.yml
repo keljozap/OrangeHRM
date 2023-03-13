@@ -38,11 +38,11 @@ jobs:
     - name: Build with Maven using firefox
       run: mvn clean verify -Dwebdriver.driver=firefox
       
-    - name: Build with Gradle
-      run: ./gradlew clean test
-      
     - name: Grant execute permissions for gradle
       run: chmod +x gradlew
+      
+    - name: Build with Gradle
+      run: ./gradlew clean test
       
     - name: Build with Gradle using firefox
       run: ./gradlew clean test -Dwebdriver.driver=firefox
