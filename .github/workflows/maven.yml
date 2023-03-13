@@ -17,7 +17,10 @@ on:
 jobs:
   test:
     permissions: write-all
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+       os: [ubuntu-latest, windows-latest, macOs-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -27,9 +30,22 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         server-id: github 
-        settings-path: ${{ github.workspace }} 
+        settings-path: ${{ github.workspace }}
+        
     - name: Build with Maven
       run: mvn clean verify
+      
+    - name: Build with Maven using firefox
+      run: mvn clean verify -Dwebdriver.driver=firefox
+      
+    - name: Build with Gradle
+      run: ./gradlew clean test
+      
+    - name: Grant execute permissions for gradle
+      run: chmod +x gradlew
+      
+    - name: Build with Gradle using firefox
+      run: ./gradlew clean test -Dwebdriver.driver=firefox
 
     - name: Publish Report
       uses: dorny/test-reporter@v1.6.0
@@ -37,4 +53,6 @@ jobs:
         name: Publish Test Result
         path: "**/target/site/serenity/SERENITY-JUNIT-*.xml"
         reporter: java-junit
+  
+    
 
