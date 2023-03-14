@@ -16,7 +16,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze Code
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -88,19 +88,7 @@ jobs:
         name: Publish Test Result
         path: "**/target/site/serenity/SERENITY-JUNIT-*.xml"
         reporter: java-junit
-        
-  AnalizeCode:
-    permissions: write-all
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        server-id: github 
-        settings-path: ${{ github.workspace}}
+      
        
 
   
