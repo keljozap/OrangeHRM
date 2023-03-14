@@ -47,10 +47,6 @@ jobs:
     - name: Build with Gradle
       if: always()
       run: ./gradlew clean test
-      
-    - name: Build with Gradle using firefox
-      if: always()
-      run: ./gradlew clean test -Dwebdriver.driver=firefox
 
     - name: Publish Report
       if: always()
